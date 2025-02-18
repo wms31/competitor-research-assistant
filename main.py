@@ -73,7 +73,7 @@ if button_clicked:
     st.session_state.generating = True
 
 if st.session_state.generating:
-    with st.spinner("Resarching..."):
+    with st.spinner("Researching..."):
         results = chain.invoke({"question": topic})
         st.session_state.results = results
         st.session_state.generating = False
