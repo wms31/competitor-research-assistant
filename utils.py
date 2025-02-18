@@ -66,39 +66,39 @@ numbered_list_style = ParagraphStyle(
 styles.add(numbered_list_style)
 
 # Continue with the rest of your PDF generation code.
-def download_as_pdf(results):
-    pdf_file = io.BytesIO()
-    doc = SimpleDocTemplate(pdf_file, pagesize=letter)
-    story = []
+# def download_as_pdf(results):
+#     pdf_file = io.BytesIO()
+#     doc = SimpleDocTemplate(pdf_file, pagesize=letter)
+#     story = []
 
-    # Convert markdown to HTML and then parse with BeautifulSoup
-    import markdown
-    from bs4 import BeautifulSoup
+#     # Convert markdown to HTML and then parse with BeautifulSoup
+#     import markdown
+#     from bs4 import BeautifulSoup
 
-    html = markdown.markdown(results)
-    soup = BeautifulSoup(html, 'html.parser')
+#     html = markdown.markdown(results)
+#     soup = BeautifulSoup(html, 'html.parser')
 
-    for element in soup.find_all(['h1', 'h2', 'h3', 'p', 'ul', 'ol']):
-        if element.name == 'h1':
-            p = Paragraph(element.text, styles['Heading1'])
-        elif element.name == 'h2':
-            p = Paragraph(element.text, styles['Heading2'])
-        elif element.name == 'h3':
-            p = Paragraph(element.text, styles['Heading3'])
-        elif element.name == 'p':
-            p = Paragraph(element.text, styles['Normal'])
-        elif element.name == 'ul':
-            list_items = [Paragraph(li.text, styles['BulletList']) for li in element.find_all('li')]
-            p = ListFlowable(list_items, bulletType='bullet')
-        elif element.name == 'ol':
-            list_items = [Paragraph(li.text, styles['NumberedList']) for li in element.find_all('li')]
-            p = ListFlowable(list_items, bulletType='1')
-        else:
-            p = Paragraph(element.text, styles['Normal'])
+#     for element in soup.find_all(['h1', 'h2', 'h3', 'p', 'ul', 'ol']):
+#         if element.name == 'h1':
+#             p = Paragraph(element.text, styles['Heading1'])
+#         elif element.name == 'h2':
+#             p = Paragraph(element.text, styles['Heading2'])
+#         elif element.name == 'h3':
+#             p = Paragraph(element.text, styles['Heading3'])
+#         elif element.name == 'p':
+#             p = Paragraph(element.text, styles['Normal'])
+#         elif element.name == 'ul':
+#             list_items = [Paragraph(li.text, styles['BulletList']) for li in element.find_all('li')]
+#             p = ListFlowable(list_items, bulletType='bullet')
+#         elif element.name == 'ol':
+#             list_items = [Paragraph(li.text, styles['NumberedList']) for li in element.find_all('li')]
+#             p = ListFlowable(list_items, bulletType='1')
+#         else:
+#             p = Paragraph(element.text, styles['Normal'])
 
-        story.append(p)
-        story.append(Spacer(1, 6))
+#         story.append(p)
+#         story.append(Spacer(1, 6))
 
-    doc.build(story)
-    pdf_file.seek(0)
-    return pdf_file.getvalue()
+#     doc.build(story)
+#     pdf_file.seek(0)
+#     return pdf_file.getvalue()

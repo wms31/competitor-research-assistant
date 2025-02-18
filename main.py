@@ -6,7 +6,8 @@ from langchain_core.runnables import RunnablePassthrough
 from dotenv import load_dotenv
 
 from prompts import generate_webpage_summary_template, generate_search_queries_prompt, generate_research_report_prompt
-from utils import scrape_text, flatten_list_of_list, web_search, download_as_pdf
+from utils import scrape_text, flatten_list_of_list, web_search
+#, download_as_pdf
 
 import json
 import streamlit as st
@@ -63,10 +64,10 @@ if "results" not in st.session_state:
 st.title("Competitor Research Assistant")  # More specific title
 st.write("Enter a topic related to demolition services to generate a research report:") #Demolition specific instructions
 
-topic = st.text_input("Demolition Topic (e.g., 'Competitor analysis of high-rise demolition in Dubai', 'Market trends for sustainable demolition practices')") #Demolition specific instructions
+topic = st.text_input("Demolition Topic (e.g., 'Competitor Analysis for WEM Technical Services Regarding High-Rise Demolition in Dubai', 'Market trends for sustainable demolition practices')") #Demolition specific instructions
 
 # Disable the button if the report is generating
-button_clicked = st.button("Generate Report", disabled=st.session_state.generating)
+button_clicked = st.button("Researching...", disabled=st.session_state.generating)
 
 if button_clicked:
     st.session_state.generating = True
@@ -81,13 +82,13 @@ if st.session_state.generating:
 # Display the results if available
 if st.session_state.results:
     st.write(st.session_state.results)
-    pdf_data = download_as_pdf(st.session_state.results)
-    if pdf_data:
-        st.download_button(
-            label="Download Report as PDF",
-            data=pdf_data,
-            file_name="research_report.pdf",
-            mime="application/pdf"
-        )
-    else:
-        st.error("Failed to generate PDF.")
+    # pdf_data = download_as_pdf(st.session_state.results)
+    # if pdf_data:
+    #     st.download_button(
+    #         label="Download Report as PDF",
+    #         data=pdf_data,
+    #         file_name="research_report.pdf",
+    #         mime="application/pdf"
+    #     )
+    # else:
+    #     st.error("Failed to generate PDF.")
