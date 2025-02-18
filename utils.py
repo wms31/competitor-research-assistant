@@ -6,10 +6,10 @@ import markdown
 import requests
 # from weasyprint import HTML
 
-from reportlab.lib.pagesizes import letter
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, ListFlowable
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.lib.enums import TA_LEFT
+# from reportlab.lib.pagesizes import letter
+# from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, ListFlowable
+# from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+# from reportlab.lib.enums import TA_LEFT
 
 RESULTS_PER_QUESTION = 3
 ddg_search = DuckDuckGoSearchAPIWrapper()
@@ -43,27 +43,27 @@ def web_search(query: str, num_results: int = RESULTS_PER_QUESTION):
   return [r["link"] for r in results]
 
 # Create a sample stylesheet and modify existing styles if needed.
-styles = getSampleStyleSheet()
-styles['Heading1'].alignment = TA_LEFT
-styles['Heading2'].alignment = TA_LEFT
-styles['Heading3'].alignment = TA_LEFT
+# styles = getSampleStyleSheet()
+# styles['Heading1'].alignment = TA_LEFT
+# styles['Heading2'].alignment = TA_LEFT
+# styles['Heading3'].alignment = TA_LEFT
 
-# Correctly add a new style using the add() method.
-bullet_list_style = ParagraphStyle(
-    name='BulletList',
-    parent=styles['Normal'],
-    leftIndent=24,
-    bulletFontName='Symbol',
-    bulletFontSize=10
-)
-styles.add(bullet_list_style)
+# # Correctly add a new style using the add() method.
+# bullet_list_style = ParagraphStyle(
+#     name='BulletList',
+#     parent=styles['Normal'],
+#     leftIndent=24,
+#     bulletFontName='Symbol',
+#     bulletFontSize=10
+# )
+# styles.add(bullet_list_style)
 
-numbered_list_style = ParagraphStyle(
-    name='NumberedList',
-    parent=styles['Normal'],
-    leftIndent=24
-)
-styles.add(numbered_list_style)
+# numbered_list_style = ParagraphStyle(
+#     name='NumberedList',
+#     parent=styles['Normal'],
+#     leftIndent=24
+# )
+# styles.add(numbered_list_style)
 
 # Continue with the rest of your PDF generation code.
 # def download_as_pdf(results):
