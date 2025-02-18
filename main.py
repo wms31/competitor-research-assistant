@@ -67,13 +67,13 @@ st.write("Enter a topic related to demolition services to generate a research re
 topic = st.text_input("Demolition Topic (e.g., 'Competitor Analysis for WEM Technical Services Regarding High-Rise Demolition in Dubai', 'Market trends for sustainable demolition practices')") #Demolition specific instructions
 
 # Disable the button if the report is generating
-button_clicked = st.button("Researching...", disabled=st.session_state.generating)
+button_clicked = st.button("Generate Analysis", disabled=st.session_state.generating)
 
 if button_clicked:
     st.session_state.generating = True
 
 if st.session_state.generating:
-    with st.spinner("Generating report..."):
+    with st.spinner("Resarching..."):
         results = chain.invoke({"question": topic})
         st.session_state.results = results
         st.session_state.generating = False
